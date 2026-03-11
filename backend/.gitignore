@@ -1,0 +1,50 @@
+# ENVIRONMENT VARIABLES, TOKENS & SECRETS
+.env
+.env.*
+.env.local
+*.token
+tokens.json
+*.pem
+*.key
+credentials.json
+serviceAccountKey.json
+secret
+secrets.*
+*secret*
+*.credentials
+*.p12
+*.pfx
+*.ovpn
+*.keytab
+service-account.json
+firebase-adminsdk.json
+aws-credentials.json
+s3-credentials.json
+JWT_SECRET
+JWT_SECRET!
+EMAIL_USER
+EMAIL_PASS
+MONGODB_URI
+MONGODB_URL
+DATABASE_URL
+DB_PASSWORD
+AWS_ACCESS_KEY
+AWS_SECRET_KEY
+STRIPE_SECRET_KEY
+RAZORPAY_KEY_SECRET
+
+# DATABASE & CREDENTIALS
+*.sqlite
+*.db
+*.sqlite3
+mongodb://*
+/data/*
+*.mongo*
+
+# BUILD OUTPUT
+node_modules/
+dist/
+*.log
+
+# MISC
+.history
