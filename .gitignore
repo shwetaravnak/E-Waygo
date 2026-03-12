@@ -14,6 +14,8 @@ npm-shrinkwrap.json
 # PROJECT SPECIFIC
 demo.tsx
 /server
+src/app/data/
+backend/src/data/
 
 # TESTING & COVERAGE
 /coverage

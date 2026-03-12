@@ -7,6 +7,8 @@ export interface IUser extends Document {
   phoneNumber: string;
   role: 'user' | 'ewaste_center' | 'admin';
   facility?: string; // for ewaste_center
+  resetPasswordToken?: string;
+  resetPasswordExpiry?: Date;
 }
 
 const userSchema = new Schema<IUser>(
@@ -17,6 +19,8 @@ const userSchema = new Schema<IUser>(
     phoneNumber: { type: String, required: true },
     role: { type: String, enum: ['user', 'ewaste_center', 'admin'], default: 'user' },
     facility: { type: String },
+    resetPasswordToken: { type: String },
+    resetPasswordExpiry: { type: Date },
   },
   { timestamps: true }
 );

@@ -1,7 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { getToken, getRole, getUser, handleLogout } from "../sign-in/auth";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Admin = () => {
   const [users, setUsers] = useState<any[]>([]);
@@ -11,6 +14,18 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedBooking, setSelectedBooking] = useState<any>(null);
+
+  // Add Recycle Center form state
+  const [addCenterForm, setAddCenterForm] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    facility: ""
+  });
+  const [showAddCenterForm, setShowAddCenterForm] = useState(false);
+  const [isAddingCenter, setIsAddingCenter] = useState(false);
+
   const router = useRouter();
   
   const user = getUser();
@@ -160,23 +175,31 @@ const Admin = () => {
           {role === "admin" ? "Admin Dashboard" : `E-Waste Center Dashboard - ${facility}`}
         </h1>
 
+        <ToastContainer position="top-right" autoClose={3000} theme="dark" />
+        
         {/* Admin Stats Cards */}
         {role === "admin" && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-go-green">Total Users</h3>
+              <h3 className="text-xl font-semibold text-emerald-600">Total Users</h3>
               <p className="text-3xl font-bold mt-2">{users.length}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-go-green">E-Waste Centers</h3>
+              <h3 className="text-xl font-semibold text-emerald-600">E-Waste Centers</h3>
               <p className="text-3xl font-bold mt-2">{ewasteCenters.length}</p>
+              <button
+                onClick={() => router.push("/admin/add-center")}
+                className="mt-2 bg-emerald-600 text-white px-4 py-1 rounded-lg text-sm hover:bg-emerald-700 transition-colors w-full"
+              >
+                + Add Center
+              </button>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-go-green">Total Bookings</h3>
+              <h3 className="text-xl font-semibold text-emerald-600">Total Bookings</h3>
               <p className="text-3xl font-bold mt-2">{bookings.length}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-go-green">Messages</h3>
+              <h3 className="text-xl font-semibold text-emerald-600">Messages</h3>
               <p className="text-3xl font-bold mt-2">{messages.length}</p>
             </div>
           </div>

@@ -160,10 +160,10 @@ const Signin: React.FC = () => {
               
               {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
-                <label className="flex items-center">
+                {/* <label className="flex items-center">
                   <input type="checkbox" className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500" />
                   <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
+                </label> */}
                 <Link href="/forget-password" className="text-sm font-medium text-emerald-600 hover:text-emerald-700">
                   Forgot password?
                 </Link>
@@ -190,17 +190,17 @@ const Signin: React.FC = () => {
             </form>
             
             {/* Divider */}
-            <div className="relative my-8">
+            {/* <div className="relative my-8">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-4 bg-white text-gray-500">Or continue with</span>
               </div>
-            </div>
+            </div> */}
             
             {/* Social Login */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* <div className="grid grid-cols-2 gap-4">
               <button className="flex items-center justify-center gap-2 py-2.5 px-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors">
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -216,7 +216,7 @@ const Signin: React.FC = () => {
                 </svg>
                 <span className="text-sm font-medium text-gray-700">GitHub</span>
               </button>
-            </div>
+            </div> */}
             
             {/* Sign Up Link */}
             <p className="text-center mt-8 text-gray-600">

@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import User from "../models/user";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
+import crypto from "crypto";
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -50,5 +52,86 @@ export const getUsers = async (req: Request, res: Response) => {
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json({ error: "Get users failed" });
+  }
+};
+
+export const sendResetCode = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Generate 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const hashedOtp = crypto.createHash("sha256").update(otp).digest("hex");
+    const expiry = Date.now() + 10 * 60 * 1000; // 10 minutes
+
+    user.resetPasswordToken = hashedOtp;
+    user.resetPasswordExpiry = new Date(expiry);
+    await user.save();
+
+    // Send email
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER!,
+        pass: process.env.EMAIL_PASS!,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER!,
+      to: email,
+      subject: "E-Waygo Password Reset Code",
+      html: `
+        <h2>Your Password Reset Code</h2>
+        <p>Use this code to reset your password: <strong>${otp}</strong></p>
+        <p>This code expires in 10 minutes.</p>
+        <p>If you didn't request this, please ignore this email.</p>
+      `,
+    }; 
+
+    await transporter.sendMail(mailOptions);
+
+    res.status(200).json({ message: "Reset code sent to your email" });
+  } catch (err) {
+    console.error("Send reset code error:", err);
+    res.status(500).json({ error: "Failed to send reset code" });
+  }
+};
+
+export const resetPassword = async (req: Request, res: Response) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+    if (!email || !otp || !newPassword) {
+      return res.status(400).json({ message: "Email, OTP, and new password are required" });
+    }
+
+    const user = await User.findOne({ 
+      email, 
+      resetPasswordToken: crypto.createHash("sha256").update(otp).digest("hex"),
+      resetPasswordExpiry: { $gt: new Date() }
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid or expired OTP" });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpiry = undefined;
+    await user.save();
+
+    res.status(200).json({ message: "Password reset successful" });
+  } catch (err) {
+    console.error("Reset password error:", err);
+    res.status(500).json({ error: "Password reset failed" });
   }
 };
