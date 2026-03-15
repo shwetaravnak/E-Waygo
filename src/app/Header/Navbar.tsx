@@ -101,7 +101,7 @@ const Header = () => {
           />
         </Link>
 
-        <nav className={`navbar ${isNavbarActive ? "active" : ""}`} data-navbar>
+        <nav className={`navbar z-50 ${isNavbarActive ? "active" : ""}`} data-navbar>
           <div className="wrapper">
             <Link href="/" className="logo">
               E-Waygo
@@ -118,19 +118,37 @@ const Header = () => {
           <ul className="navbar-list">
             <NavItem label="Home" />
             <NavItem label="About" />
-            <NavItem label="E-Facilities" />
-            <NavItem label="Recycle" />
-            <NavItem label="Contact Us" />
-            {user?.role === 'admin' && <NavItem label="Dashboard" />}
-            {user?.role === 'ewaste_center' && <NavItem label="Users Requests" />}
-            {user && <NavItem label="My Bookings" />}
+
+            {/* Admin specifically */}
+            {user?.role === 'admin' && (
+              <NavItem label="Dashboard" />
+            )}
+
+            {/* E-Waste Center specifically */}
+            {user?.role === 'ewaste_center' && (
+              <>
+                <NavItem label="Contact Us" />
+                <NavItem label="Users Requests" />
+              </>
+            )}
+
+            {/* Regular User / Guest */}
+            {(user?.role === 'user' || !user) && (
+              <>
+                <NavItem label="E-Facilities" />
+                <NavItem label="Recycle" />
+                <NavItem label="Contact Us" />
+                {user && <NavItem label="My Bookings" />}
+              </>
+            )}
+
             <NavItem label="Rules" />
           </ul>
         </nav>
 
         {/* ✅ Only render location once hydrated */}
         {isClient && (
-          <h1 className="font-montserrat font-bold text-xl ml-12 md:ml-4 md:text-2xl text-emerald-600 flex items-center gap-[1vh]">
+          <h1 className="font-montserrat font-bold text-xl ml-12 md:ml-4 md:text-2xl text-emerald-600 flex items-center gap-[1vh] z-50">
             <IonIcon icon={location}></IonIcon>
             {locations || "Loading..."}
           </h1>
@@ -138,7 +156,7 @@ const Header = () => {
 
         {/* ✅ Only render user info once hydrated */}
         {isClient && user ? (
-          <div className="relative">
+          <div className="relative z-50">
             <button
               className={`md:mr-8 text-sm md:text-xl font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
               onClick={handleToggleDropdown}
@@ -172,11 +190,11 @@ const Header = () => {
         {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 mr-2 md:mr-4"
+          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 mr-2 md:mr-4 z-50 relative"
           aria-label="Toggle dark mode"
         >
-          <IonIcon 
-            icon={isDarkMode ? sunny : moon} 
+          <IonIcon
+            icon={isDarkMode ? sunny : moon}
             className="text-xl text-emerald-600 dark:text-yellow-400"
           ></IonIcon>
         </button>

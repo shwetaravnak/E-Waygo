@@ -169,9 +169,9 @@ const Admin = () => {
   const role = getRole();
 
   return (
-    <div className="p-8 min-h-screen bg-gray-50">
+    <div className="p-8 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center">
+        <h1 className="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-gray-100">
           {role === "admin" ? "Admin Dashboard" : `E-Waste Center Dashboard - ${facility}`}
         </h1>
 
@@ -180,13 +180,13 @@ const Admin = () => {
         {/* Admin Stats Cards */}
         {role === "admin" && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-emerald-600">Total Users</h3>
-              <p className="text-3xl font-bold mt-2">{users.length}</p>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors">
+              <h3 className="text-xl font-semibold text-emerald-600 dark:text-emerald-400">Total Users</h3>
+              <p className="text-3xl font-bold mt-2 text-gray-800 dark:text-gray-100">{users.length}</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-emerald-600">E-Waste Centers</h3>
-              <p className="text-3xl font-bold mt-2">{ewasteCenters.length}</p>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors">
+              <h3 className="text-xl font-semibold text-emerald-600 dark:text-emerald-400">E-Waste Centers</h3>
+              <p className="text-3xl font-bold mt-2 text-gray-800 dark:text-gray-100">{ewasteCenters.length}</p>
               <button
                 onClick={() => router.push("/admin/add-center")}
                 className="mt-2 bg-emerald-600 text-white px-4 py-1 rounded-lg text-sm hover:bg-emerald-700 transition-colors w-full"
@@ -194,13 +194,13 @@ const Admin = () => {
                 + Add Center
               </button>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-emerald-600">Total Bookings</h3>
-              <p className="text-3xl font-bold mt-2">{bookings.length}</p>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors">
+              <h3 className="text-xl font-semibold text-emerald-600 dark:text-emerald-400">Total Bookings</h3>
+              <p className="text-3xl font-bold mt-2 text-gray-800 dark:text-gray-100">{bookings.length}</p>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold text-emerald-600">Messages</h3>
-              <p className="text-3xl font-bold mt-2">{messages.length}</p>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors">
+              <h3 className="text-xl font-semibold text-emerald-600 dark:text-emerald-400">Messages</h3>
+              <p className="text-3xl font-bold mt-2 text-gray-800 dark:text-gray-100">{messages.length}</p>
             </div>
           </div>
         )}
@@ -208,17 +208,17 @@ const Admin = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Admin: All Users */}
           {role === "admin" && (
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-semibold mb-4">All Users</h2>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">All Users</h2>
               {users.length === 0 ? (
-                <p className="text-gray-500">No users found</p>
+                <p className="text-gray-500 dark:text-gray-400">No users found</p>
               ) : (
-                <ul className="space-y-3 max-h-96 overflow-y-auto">
+                <ul className="space-y-3 max-h-96 overflow-y-auto stylish-scrollbar pr-2">
                   {users.map((user) => (
-                    <li key={user._id} className="border-b pb-2">
-                      <p className="font-medium">{user.fullname}</p>
-                      <p className="text-sm text-gray-600">{user.email}</p>
-                      <span className="text-xs bg-gray-200 px-2 py-1 rounded">{user.role}</span>
+                    <li key={user._id} className="border-b border-gray-100 dark:border-gray-700 pb-2">
+                      <p className="font-medium text-gray-800 dark:text-gray-200">{user.fullname}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{user.email}</p>
+                      <span className="text-xs bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded transition-colors">{user.role}</span>
                     </li>
                   ))}
                 </ul>
@@ -228,16 +228,16 @@ const Admin = () => {
 
           {/* Admin: E-Waste Centers */}
           {role === "admin" && (
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-semibold mb-4">E-Waste Centers</h2>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">E-Waste Centers</h2>
               {ewasteCenters.length === 0 ? (
-                <p className="text-gray-500">No e-waste centers found</p>
+                <p className="text-gray-500 dark:text-gray-400">No e-waste centers found</p>
               ) : (
-                <ul className="space-y-3 max-h-96 overflow-y-auto">
+                <ul className="space-y-3 max-h-96 overflow-y-auto stylish-scrollbar pr-2">
                   {ewasteCenters.map((center) => (
-                    <li key={center._id} className="border-b pb-2">
-                      <p className="font-medium">{center.fullname}</p>
-                      <p className="text-sm text-gray-600">{center.email}</p>
+                    <li key={center._id} className="border-b border-gray-100 dark:border-gray-700 pb-2">
+                      <p className="font-medium text-gray-800 dark:text-gray-200">{center.fullname}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{center.email}</p>
                     </li>
                   ))}
                 </ul>
@@ -247,19 +247,19 @@ const Admin = () => {
 
           {/* Admin: Messages */}
           {role === "admin" && (
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-semibold mb-4">Messages</h2>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Messages</h2>
               {messages.length === 0 ? (
-                <p className="text-gray-500">No messages found</p>
+                <p className="text-gray-500 dark:text-gray-400">No messages found</p>
               ) : (
-                <ul className="space-y-3 max-h-96 overflow-y-auto">
+                <ul className="space-y-3 max-h-96 overflow-y-auto stylish-scrollbar pr-2">
                   {messages.map((msg) => (
-                    <li key={msg._id} className="border-b pb-2">
-                      <p className="font-medium">{msg.name}</p>
-                      <p className="text-sm text-gray-600">{msg.email}</p>
-                      <p className="text-sm text-gray-600">{msg.phone}</p>
-                      <p className="text-sm mt-1">{msg.message}</p>
-                      <span className="text-xs text-gray-400">
+                    <li key={msg._id} className="border-b border-gray-100 dark:border-gray-700 pb-2">
+                      <p className="font-medium text-gray-800 dark:text-gray-200">{msg.name}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{msg.email}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{msg.phone}</p>
+                      <p className="text-sm mt-1 text-gray-800 dark:text-gray-300">{msg.message}</p>
+                      <span className="text-xs text-gray-400 dark:text-gray-500">
                         {new Date(msg.createdAt).toLocaleDateString()}
                       </span>
                     </li>
@@ -270,24 +270,24 @@ const Admin = () => {
           )}
 
           {/* All Roles: Bookings - Enlarged with more details */}
-          <div className={`bg-white p-6 rounded-lg shadow-md ${role === "admin" ? "col-span-3" : "col-span-3"}`}>
+          <div className={`bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 transition-colors ${role === "admin" ? "col-span-3" : "col-span-3"}`}>
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-semibold">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
                 {role === "admin" ? "All Bookings - Admin Logs" : "Booking Requests"}
               </h2>
               {role === "admin" && (
-                <span className="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded">
+                <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-sm font-semibold px-3 py-1 rounded">
                   🔒 VIEW ONLY - Admin Logs
                 </span>
               )}
             </div>
             {bookings.length === 0 ? (
-              <p className="text-gray-500">No bookings found</p>
+              <p className="text-gray-500 dark:text-gray-400">No bookings found</p>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+                <table className="w-full text-left border-collapse min-w-max">
                   <thead>
-                    <tr className="bg-gray-100 border-b">
+                    <tr className="bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200">
                       <th className="p-3 text-sm font-semibold">Name</th>
                       <th className="p-3 text-sm font-semibold">Email</th>
                       <th className="p-3 text-sm font-semibold">Item</th>
@@ -302,9 +302,9 @@ const Admin = () => {
                       <th className="p-3 text-sm font-semibold">Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="text-gray-700 dark:text-gray-300">
                     {bookings.map((booking) => (
-                      <tr key={booking._id} className="border-b hover:bg-gray-50">
+                      <tr key={booking._id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
                         <td className="p-3 text-sm">{booking.fullName}</td>
                         <td className="p-3 text-sm">{booking.userEmail}</td>
                         <td className="p-3 text-sm">{booking.recycleItem}</td>
@@ -315,22 +315,22 @@ const Admin = () => {
                         <td className="p-3 text-sm">{booking.pickupDate}</td>
                         <td className="p-3 text-sm">{booking.pickupTime}</td>
                         <td className="p-3 text-sm">
-                          <span className={`text-xs px-2 py-1 rounded ${
-                            booking.status === 'completed' ? 'bg-green-200' : 
-                            booking.status === 'pending' ? 'bg-yellow-200' : 
-                            booking.status === 'accepted' ? 'bg-blue-200' :
-                            booking.status === 'declined' ? 'bg-red-200' : 'bg-gray-200'
+                          <span className={`text-xs px-2 py-1 rounded font-medium ${
+                            booking.status === 'completed' ? 'bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300' : 
+                            booking.status === 'pending' ? 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-300' : 
+                            booking.status === 'accepted' ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300' :
+                            booking.status === 'declined' ? 'bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-300'
                           }`}>
                             {booking.status}
                           </span>
                         </td>
-                        <td className="p-3 text-sm text-gray-500">
+                        <td className="p-3 text-sm text-gray-500 dark:text-gray-400">
                           {new Date(booking.createdAt).toLocaleDateString()}
                         </td>
                         <td className="p-3 text-sm">
                           <button
                             onClick={() => setSelectedBooking(booking)}
-                            className="text-blue-600 hover:text-blue-800 mr-2"
+                            className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 mr-2 transition-colors"
                           >
                             View
                           </button>
@@ -338,19 +338,18 @@ const Admin = () => {
                             <>
                               <button
                                 onClick={() => updateStatus(booking._id, 'accepted')}
-                                className="text-green-600 hover:text-green-800 mr-2"
+                                className="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 mr-2 transition-colors"
                               >
                                 Accept
                               </button>
                               <button
                                 onClick={() => updateStatus(booking._id, 'declined')}
-                                className="text-red-600 hover:text-red-800"
+                                className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 transition-colors"
                               >
                                 Decline
                               </button>
                             </>
                           )}
-                          {/* Admin role has VIEW ONLY access - no action buttons */}
                         </td>
                       </tr>
                     ))}
@@ -363,76 +362,76 @@ const Admin = () => {
 
         {/* Booking Details Modal */}
         {selectedBooking && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 dark:border-gray-700">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Booking Details</h2>
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Booking Details</h2>
                 <button
                   onClick={() => setSelectedBooking(null)}
-                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                  className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-3xl font-light transition-colors"
                 >
                   &times;
                 </button>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Full Name</p>
-                  <p className="font-semibold">{selectedBooking.fullName}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Full Name</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.fullName}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Email</p>
-                  <p className="font-semibold">{selectedBooking.userEmail}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.userEmail}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Phone</p>
-                  <p className="font-semibold">{selectedBooking.phone}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Phone</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.phone}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Recycle Item</p>
-                  <p className="font-semibold">{selectedBooking.recycleItem}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Recycle Item</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.recycleItem}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Price</p>
-                  <p className="font-semibold text-green-600">₹{selectedBooking.recycleItemPrice}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Price</p>
+                  <p className="font-semibold text-emerald-600 dark:text-emerald-400">₹{selectedBooking.recycleItemPrice}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Facility</p>
-                  <p className="font-semibold">{selectedBooking.facility}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Facility</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.facility}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Pickup Date</p>
-                  <p className="font-semibold">{selectedBooking.pickupDate}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Pickup Date</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.pickupDate}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Pickup Time</p>
-                  <p className="font-semibold">{selectedBooking.pickupTime}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Pickup Time</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.pickupTime}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded col-span-1 md:col-span-2">
-                  <p className="text-sm text-gray-500">Address</p>
-                  <p className="font-semibold">{selectedBooking.address}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700 col-span-1 md:col-span-2">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Address</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.address}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Status</p>
-                  <span className={`text-xs px-2 py-1 rounded ${
-                    selectedBooking.status === 'completed' ? 'bg-green-200' : 
-                    selectedBooking.status === 'pending' ? 'bg-yellow-200' : 
-                    selectedBooking.status === 'accepted' ? 'bg-blue-200' :
-                    selectedBooking.status === 'declined' ? 'bg-red-200' : 'bg-gray-200'
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Status</p>
+                  <span className={`text-xs px-3 py-1.5 rounded-full font-bold inline-block mt-1 ${
+                    selectedBooking.status === 'completed' ? 'bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300' : 
+                    selectedBooking.status === 'pending' ? 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-300' : 
+                    selectedBooking.status === 'accepted' ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300' :
+                    selectedBooking.status === 'declined' ? 'bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-300' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
                   }`}>
-                    {selectedBooking.status}
+                    {selectedBooking.status.toUpperCase()}
                   </span>
                 </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Created At</p>
-                  <p className="font-semibold">{new Date(selectedBooking.createdAt).toLocaleString()}</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Created At</p>
+                  <p className="font-semibold text-gray-800 dark:text-gray-200">{new Date(selectedBooking.createdAt).toLocaleString()}</p>
                 </div>
               </div>
 
-              <div className="mt-6 flex gap-4 justify-end">
+              <div className="mt-8 flex gap-4 justify-end">
                 <button
                   onClick={() => setSelectedBooking(null)}
-                  className="px-6 py-2 bg-gray-200 rounded hover:bg-gray-300"
+                  className="px-6 py-2.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 >
                   Close
                 </button>
@@ -443,22 +442,21 @@ const Admin = () => {
                         updateStatus(selectedBooking._id, 'accepted');
                         setSelectedBooking(null);
                       }}
-                      className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                      className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-emerald-500/20"
                     >
-                      Accept
+                      Accept Book
                     </button>
                     <button
                       onClick={() => {
                         updateStatus(selectedBooking._id, 'declined');
                         setSelectedBooking(null);
                       }}
-                      className="px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                      className="px-6 py-2.5 bg-rose-500 hover:bg-rose-600 dark:bg-rose-600 dark:hover:bg-rose-700 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-rose-500/20"
                     >
                       Decline
                     </button>
                   </>
                 )}
-                {/* Admin role has VIEW ONLY access - no action buttons in modal */}
               </div>
             </div>
           </div>

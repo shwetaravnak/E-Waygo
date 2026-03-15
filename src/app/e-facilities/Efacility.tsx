@@ -406,116 +406,138 @@ const FacilityMap: React.FC = () => {
         <meta name="description" content="Locate certified e-waste recycling facilities near you. Get directions, facility details, and book recycling services with our interactive map." />
       </Head>
     
-      <div className="min-h-screen bg-gray-50 e-facilities-container">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-emerald-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 e-facilities-container font-sans relative transition-colors duration-300">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-emerald-100/40 dark:from-emerald-900/40 to-transparent pointer-events-none"></div>
+      
         {isLoading ? (
-          <div className="flex items-center justify-center h-screen">
-            <div className="text-center">
-              <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-xl text-gray-600">Locating the nearest e-waste facilities...</p>
+          <div className="flex items-center justify-center h-[70vh]">
+            <div className="text-center relative">
+              <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4 relative z-10"></div>
+              <p className="text-lg font-medium text-emerald-600 dark:text-emerald-400 animate-pulse">Finding locations near you...</p>
             </div>
           </div>
         ) : clientLocation ? (
-          <div className="pt-8 pb-16 px-4 md:px-8">
-            <div className="mb-8 text-center">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">E-Waste Recycling Facility Locator</h1>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Find certified e-waste collection and recycling centers near you. Get directions, check facility details, and book recycling services.
+          <div className="pt-10 pb-20 w-full px-4 md:px-8 xl:px-12 mx-auto relative z-10">
+            <div className="mb-10 text-center space-y-4">
+              <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-700 to-teal-600 dark:from-emerald-400 dark:to-teal-300 drop-shadow-sm pb-2">E-Waste Facility Locator</h1>
+              <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg md:text-xl font-medium">
+                Find certified e-waste collection and recycling centers. Get directions, check facility details, and book services instantly.
               </p>
             </div>
             
-            <div className="mb-6 flex flex-wrap gap-4 justify-center">
-              <div className="bg-white p-3 rounded-lg shadow-sm flex items-center">
-                <span className="w-4 h-4 rounded-full bg-green-500 mr-2"></span>
-                <span className="text-gray-700">Verified Facility</span>
+            <div className="mb-8 flex flex-wrap gap-4 justify-center">
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700 flex items-center hover:shadow-md transition-shadow">
+                <span className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] mr-3 animate-pulse"></span>
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">Verified Facility</span>
               </div>
-              <div className="bg-white p-3 rounded-lg shadow-sm flex items-center">
-                <span className="w-4 h-4 rounded-full bg-orange-500 mr-2"></span>
-                <span className="text-gray-700">Unverified Facility</span>
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700 flex items-center hover:shadow-md transition-shadow">
+                <span className="w-3 h-3 rounded-full bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.8)] mr-3"></span>
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">Unverified Facility</span>
               </div>
-              <div className="bg-white p-3 rounded-lg shadow-sm flex items-center">
-                <span className="w-4 h-4 rounded-full bg-blue-500 mr-2"></span>
-                <span className="text-gray-700">Your Location</span>
+              <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700 flex items-center hover:shadow-md transition-shadow">
+                <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)] mr-3"></span>
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">Your Location</span>
               </div>
             </div>
             
             <div className="flex flex-col lg:flex-row gap-6">
               <div className="lg:w-1/3 flex flex-col">
-                <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-                  <h2 className="font-bold text-xl mb-3 text-gray-800">Filter Facilities</h2>
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-gray-100/50 dark:border-gray-700 mb-6 transition-colors">
+                  <h2 className="font-bold text-xl mb-4 text-gray-800 dark:text-gray-100 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" />
+                    </svg>
+                    Filter Facilities
+                  </h2>
                   
-                  <div className="flex gap-4 mb-4 flex-wrap">
+                  <div className="flex flex-col sm:flex-row gap-4 mb-2">
                     <button 
-                      className={`px-4 py-2 rounded-md ${filterVerified ? 'bg-emerald-500 text-white' : 'bg-gray-100 text-gray-700'}`}
+                      className={`flex-1 px-5 py-3 rounded-xl font-medium text-sm transition-all duration-300 shadow-sm ${filterVerified ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-emerald-500/25' : 'bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'}`}
                       onClick={() => setFilterVerified(!filterVerified)}
                     >
                       Verified Only
                     </button>
                     
-                    <select 
-                      className="px-4 py-2 rounded-md border border-gray-200 bg-gray-100"
-                      value={filterDistance || ""}
-                      onChange={(e) => setFilterDistance(e.target.value ? parseInt(e.target.value) : null)}
-                    >
-                      <option value="">Distance - Any</option>
-                      <option value="5">Within 5 km</option>
-                      <option value="10">Within 10 km</option>
-                      <option value="20">Within 20 km</option>
-                      <option value="50">Within 50 km</option>
-                    </select>
+                    <div className="relative flex-1">
+                      <select 
+                        className="w-full px-5 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all cursor-pointer"
+                        value={filterDistance || ""}
+                        onChange={(e) => setFilterDistance(e.target.value ? parseInt(e.target.value) : null)}
+                      >
+                        <option value="">Any Distance</option>
+                        <option value="5">Within 5 km</option>
+                        <option value="10">Within 10 km</option>
+                        <option value="20">Within 20 km</option>
+                        <option value="50">Within 50 km</option>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
                 <div
                   ref={cardContainerRef}
-                  className="flex-grow bg-gray-50 rounded-lg overflow-y-auto max-h-[70vh] p-1"
+                  className="flex-grow bg-transparent rounded-2xl overflow-y-auto max-h-[70vh] pr-2 pb-4 space-y-4"
                   style={{ scrollbarWidth: 'thin' }}
                 >
                   {filteredFacilities().length > 0 ? (
                     filteredFacilities().map((info, index) => (
                       <div
                         key={index}
-                        className={`p-4 bg-white rounded-lg shadow-sm cursor-pointer mb-4 border-l-4 transition-all duration-200 hover:shadow-md
-                          ${selectedFacility === index ? "border-l-emerald-500 shadow-md" : info.verified ? "border-l-green-500" : "border-l-orange-500"}`}
-                        onClick={() => {
-                          setSelectedFacility(index);
-                        }}
+                        className={`p-6 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-300 transform
+                          ${selectedFacility === index ? "ring-2 ring-emerald-400 shadow-[0_10px_40px_-10px_rgba(16,185,129,0.3)] scale-[1.02] z-10" : "border border-gray-100 dark:border-gray-700 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] dark:shadow-none hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:border-emerald-100 dark:hover:border-emerald-700"}`}
+                        onClick={() => setSelectedFacility(index)}
                       >
-                        <div className="flex justify-between items-center mb-3">
-                          <h2 className="text-xl font-bold text-gray-800">{info.name}</h2>
+                        <div className={`absolute top-0 left-0 w-1.5 h-full ${info.verified ? "bg-gradient-to-b from-emerald-400 to-emerald-600" : "bg-gradient-to-b from-amber-400 to-orange-500"}`}></div>
+                        
+                        <div className="flex justify-between items-start mb-4">
+                          <h2 className="text-xl font-extrabold text-gray-800 dark:text-gray-100 pr-4 leading-tight">{info.name}</h2>
                           {info.verified ? (
-                            <div className="flex items-center text-green-500 text-sm font-medium">
-                              <FaCheckCircle className="mr-1" />
-                              Verified
+                            <div className="flex items-center text-emerald-600 dark:text-emerald-400 text-xs font-bold bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-100 dark:border-emerald-800 shadow-sm shrink-0">
+                              <FaCheckCircle className="mr-1.5" />
+                              VERIFIED
                             </div>
                           ) : (
-                            <div className="flex items-center text-orange-500 text-sm font-medium">
-                              <FaTimesCircle className="mr-1" />
-                              Unverified
+                            <div className="flex items-center text-orange-600 dark:text-orange-400 text-xs font-bold bg-orange-50 dark:bg-orange-900/30 px-3 py-1.5 rounded-full border border-orange-100 dark:border-orange-800 shadow-sm shrink-0">
+                              <FaTimesCircle className="mr-1.5" />
+                              UNVERIFIED
                             </div>
                           )}
                         </div>
                         
-                        <div className="mb-3 space-y-1 text-gray-600">
-                          <div className="flex items-start">
-                            <FaMapMarkerAlt className="text-gray-400 mt-1 mr-2 flex-shrink-0" />
-                            <p>{info.address}</p>
+                        <div className="mb-5 space-y-2.5 text-gray-600 dark:text-gray-300 text-sm">
+                          <div className="flex items-start group">
+                            <div className="bg-gray-50 dark:bg-gray-700/50 p-1.5 rounded-lg mr-3 shadow-sm group-hover:bg-emerald-50 dark:group-hover:bg-emerald-900/40 group-hover:text-emerald-500 transition-colors">
+                                <FaMapMarkerAlt className="flex-shrink-0" size={14} />
+                            </div>
+                            <p className="font-medium mt-0.5 leading-relaxed">{info.address}</p>
                           </div>
-                          <div className="flex items-center">
-                            <FaPhoneAlt className="text-gray-400 mr-2 flex-shrink-0" />
-                            <p>{info.contact}</p>
+                          <div className="flex items-center group">
+                            <div className="bg-gray-50 dark:bg-gray-700/50 p-1.5 rounded-lg mr-3 shadow-sm group-hover:bg-blue-50 dark:group-hover:bg-blue-900/40 group-hover:text-blue-500 transition-colors">
+                                <FaPhoneAlt className="flex-shrink-0" size={14} />
+                            </div>
+                            <p className="font-medium">{info.contact}</p>
                           </div>
-                          <div className="flex items-center">
-                            <FaClock className="text-gray-400 mr-2 flex-shrink-0" />
-                            <p>{info.time}</p>
+                          <div className="flex items-center group">
+                            <div className="bg-gray-50 dark:bg-gray-700/50 p-1.5 rounded-lg mr-3 shadow-sm group-hover:bg-amber-50 dark:group-hover:bg-amber-900/40 group-hover:text-amber-500 transition-colors">
+                                <FaClock className="flex-shrink-0" size={14} />
+                            </div>
+                            <p className="font-medium">{info.time}</p>
                           </div>
-                          <p className="font-medium text-indigo-600">
-                            {info.distance.toFixed(2)} km away
-                          </p>
+                          <div className="pt-2">
+                             <span className="inline-flex items-center bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 text-xs font-bold px-2.5 py-1 rounded-md border border-indigo-100 dark:border-indigo-800">
+                               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-2 animate-pulse"></span>
+                               {info.distance.toFixed(2)} KM AWAY
+                             </span>
+                          </div>
                         </div>
                         
-                        <div className="flex space-x-2">
+                        <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-gray-50 dark:border-gray-700">
                           <button
-                            className="flex-1 flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                            className="flex-1 flex items-center justify-center bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 border border-indigo-100 hover:border-transparent hover:shadow-lg shadow-indigo-500/30 group"
                             onClick={(e) => {
                               e.stopPropagation();
                               if (clientLocation) {
@@ -523,23 +545,26 @@ const FacilityMap: React.FC = () => {
                               }
                             }}
                           >
-                            <FaDirections className="mr-2" />
-                            Directions
+                            <FaDirections className="mr-2 group-hover:scale-110 transition-transform" />
+                            DIRECTIONS
                           </button>
 
                           <Link
                             href="/recycle"
-                            className="flex-1 flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                            className="flex-1 flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 shadow-[0_4px_14px_0_rgba(16,185,129,0.39)] hover:shadow-[0_6px_20px_rgba(16,185,129,0.23)] hover:-translate-y-0.5 group"
                           >
-                            <FaRecycle className="mr-2" />
-                            Book Recycling
+                            <FaRecycle className="mr-2 group-hover:rotate-180 transition-transform duration-700" />
+                            BOOK NOW
                           </Link>
                         </div>
                       </div>
                     ))
                   ) : (
-                    <div className="p-8 text-center text-gray-600">
-                      No facilities match your current filters. Try adjusting your search criteria.
+                    <div className="p-10 text-center bg-white/50 backdrop-blur-sm rounded-2xl border border-dashed border-gray-300">
+                      <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                      </div>
+                      <p className="text-gray-500 font-medium">No facilities match your current filters.<br/>Try adjusting your criteria.</p>
                     </div>
                   )}
                 </div>
@@ -548,14 +573,14 @@ const FacilityMap: React.FC = () => {
               <div 
                 ref={mapContainerRef} 
                 id="map" 
-                className="lg:w-2/3 h-[75vh] rounded-lg shadow-md"
+                className="lg:w-2/3 h-[75vh] min-h-[500px] rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] dark:shadow-none overflow-hidden border-4 border-white dark:border-gray-800 z-0"
               />
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center h-screen bg-gray-50 px-4">
+          <div className="flex items-center justify-center h-screen bg-gray-50 dark:bg-gray-900 px-4 transition-colors">
             <div className="max-w-md mx-auto text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-gray-400 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-gray-400 dark:text-gray-500 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>

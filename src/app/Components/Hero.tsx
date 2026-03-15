@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import hero from "../../assets/hero-banner.png";
+import { getUser } from "../sign-in/auth";
 
 const solutions = [
   "Recycling Revolution",
@@ -19,6 +20,11 @@ const solutionVariants = {
 
 const HeroSection: React.FC = () => {
   const [currentSolution, setCurrentSolution] = useState(solutions[0]);
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    setUser(getUser());
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,14 +70,16 @@ const HeroSection: React.FC = () => {
               Discover nearby recycling facilities effortlessly and take a step toward responsible disposal and environmental care—one device at a time.
             </p>
 
-            <div className="flex flex-row md:flex-row items-center justify-center md:justify-start sm:space-y-0 md:space-x-4 mb-10">
-              <Link href="/e-facilities" className="btn btn-primary mr-4">
-                Find Nearest Facility
-              </Link>
-              <Link href="/recycle" className="btn btn-primary mr-4">
-                Start Recycling Today
-              </Link>
-            </div>
+            {(!user || user.role === 'user') && (
+              <div className="flex flex-row md:flex-row items-center justify-center md:justify-start sm:space-y-0 md:space-x-4 mb-10">
+                <Link href="/e-facilities" className="btn btn-primary mr-4">
+                  Find Nearest Facility
+                </Link>
+                <Link href="/recycle" className="btn btn-primary mr-4">
+                  Start Recycling Today
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Image Side */}

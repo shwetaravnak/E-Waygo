@@ -5,7 +5,7 @@ import ResetPassword from "./ResetPassword";
 
 const Page = () => {
   return (
-    <>
+    <React.Suspense fallback={<div>Loading...</div>}>
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -16,7 +16,7 @@ const Page = () => {
           <ResetPassword />
         </div>
       </motion.div>
-    </>
+    </React.Suspense>
   );
 };
 

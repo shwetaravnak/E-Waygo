@@ -10,7 +10,6 @@ const AddCenter = () => {
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
-    password: "",
     phoneNumber: "",
     facility: ""
   });
@@ -24,14 +23,13 @@ const AddCenter = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.fullname || !formData.email || !formData.password || !formData.phoneNumber || !formData.facility) {
+    if (!formData.fullname || !formData.email || !formData.phoneNumber || !formData.facility) {
       toast.error("All fields are required");
       return;
     }
-    if (formData.password.length < 6) {
-      toast.error("Password must be at least 6 characters");
-      return;
-    }
+
+    // Generate a secure default password since it's removed from UI
+    const defaultPassword = Math.random().toString(36).slice(-10) + "A1!";
 
     setIsLoading(true);
     toast.loading("Adding recycle center...");
@@ -46,6 +44,7 @@ const AddCenter = () => {
         },
         body: JSON.stringify({
           ...formData,
+          password: defaultPassword,
           role: "ewaste_center"
         })
       });
@@ -53,8 +52,8 @@ const AddCenter = () => {
       const data = await response.json();
       if (response.ok) {
         toast.dismiss();
-        toast.success("Recycle center added successfully!");
-        setFormData({ fullname: "", email: "", password: "", phoneNumber: "", facility: "" });
+        toast.success(`Recycle center added! Password: ${defaultPassword}`, { autoClose: false }); // Show password once
+        setFormData({ fullname: "", email: "", phoneNumber: "", facility: "" });
         router.push("/admin");
       } else {
         toast.dismiss();
@@ -69,79 +68,65 @@ const AddCenter = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 md:p-8 bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center p-4 md:p-8 bg-gray-50 dark:bg-gray-900 transition-colors">
       <ToastContainer position="top-right" autoClose={3000} theme="dark" />
       
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
         <div className="p-8 md:p-12">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">Add Recycle Center</h1>
-            <p className="text-gray-500">Create a new E-Waste Center account</p>
+            <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4">Add Recycle Center</h1>
+            <p className="text-gray-500 dark:text-gray-400">Create a new E-Waste Center account</p>
           </div>
           
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
               <input
                 type="text"
                 name="fullname"
                 value={formData.fullname}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                 placeholder="Enter center manager name"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                 placeholder="center@example.com"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
               <input
                 type="tel"
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                 placeholder="1234567890"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Facility Name</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Facility Name</label>
               <input
                 type="text"
                 name="facility"
                 value={formData.facility}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                 placeholder="E-Waste Recycling Center - Downtown"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
-                placeholder="Enter strong password"
-                minLength={6}
                 required
               />
             </div>
