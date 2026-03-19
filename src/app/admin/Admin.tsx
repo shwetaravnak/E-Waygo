@@ -291,7 +291,6 @@ const Admin = () => {
                       <th className="p-3 text-sm font-semibold">Name</th>
                       <th className="p-3 text-sm font-semibold">Email</th>
                       <th className="p-3 text-sm font-semibold">Item</th>
-                      <th className="p-3 text-sm font-semibold">Price</th>
                       <th className="p-3 text-sm font-semibold">Phone</th>
                       <th className="p-3 text-sm font-semibold">Address</th>
                       <th className="p-3 text-sm font-semibold">Facility</th>
@@ -308,7 +307,6 @@ const Admin = () => {
                         <td className="p-3 text-sm">{booking.fullName}</td>
                         <td className="p-3 text-sm">{booking.userEmail}</td>
                         <td className="p-3 text-sm">{booking.recycleItem}</td>
-                        <td className="p-3 text-sm">₹{booking.recycleItemPrice}</td>
                         <td className="p-3 text-sm">{booking.phone}</td>
                         <td className="p-3 text-sm max-w-xs truncate">{booking.address}</td>
                         <td className="p-3 text-sm">{booking.facility}</td>
@@ -390,10 +388,6 @@ const Admin = () => {
                 <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
                   <p className="text-sm text-gray-500 dark:text-gray-400">Recycle Item</p>
                   <p className="font-semibold text-gray-800 dark:text-gray-200">{selectedBooking.recycleItem}</p>
-                </div>
-                <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Price</p>
-                  <p className="font-semibold text-emerald-600 dark:text-emerald-400">₹{selectedBooking.recycleItemPrice}</p>
                 </div>
                 <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-100 dark:border-gray-700">
                   <p className="text-sm text-gray-500 dark:text-gray-400">Facility</p>

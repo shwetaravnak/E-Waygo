@@ -11,7 +11,6 @@ interface Booking {
   userEmail: string;
   phone: string;
   recycleItem: string;
-  recycleItemPrice: number;
   pickupDate: string;
   pickupTime: string;
   address: string;
@@ -159,9 +158,8 @@ const UsersRequests: React.FC = () => {
     const completed = bookings.filter(b => b.status === 'completed').length;
     const pending = bookings.filter(b => b.status === 'pending').length;
     const accepted = bookings.filter(b => b.status === 'accepted').length;
-    const totalValue = bookings.reduce((sum, b) => sum + (Number(b.recycleItemPrice) || 0), 0);
     
-    return { total, completed, pending, accepted, totalValue };
+    return { total, completed, pending, accepted };
   }, [bookings]);
 
   const getStatusIcon = (status: string) => {
@@ -258,7 +256,7 @@ const UsersRequests: React.FC = () => {
               </div>
 
               {/* Stats Cards */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className={`rounded-xl p-4 text-center ${isDarkMode ? 'bg-gray-800/50' : 'bg-white/20'}`}>
                   <FiActivity className="text-2xl text-white mx-auto mb-2" />
                   <p className="text-2xl font-bold text-white">{stats.total}</p>
@@ -273,11 +271,6 @@ const UsersRequests: React.FC = () => {
                   <FiClock className="text-2xl text-yellow-300 mx-auto mb-2" />
                   <p className="text-2xl font-bold text-white">{stats.pending}</p>
                   <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-white/70'}`}>Pending</p>
-                </div>
-                <div className={`rounded-xl p-4 text-center ${isDarkMode ? 'bg-gray-800/50' : 'bg-white/20'}`}>
-                  <FiDollarSign className="text-2xl text-emerald-300 mx-auto mb-2" />
-                  <p className="text-2xl font-bold text-white">₹{stats.totalValue}</p>
-                  <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-white/70'}`}>Value</p>
                 </div>
               </div>
             </div>
@@ -319,9 +312,6 @@ const UsersRequests: React.FC = () => {
                     </th>
                     <th className={`px-6 py-4 text-left text-sm font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Pickup Details
-                    </th>
-                    <th className={`px-6 py-4 text-left text-sm font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                      Price
                     </th>
                     <th className={`px-6 py-4 text-left text-sm font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Status
@@ -374,11 +364,7 @@ const UsersRequests: React.FC = () => {
                             {booking.pickupTime}
                           </div>
                         </td>
-                        <td className="px-6 py-4">
-                          <span className="text-emerald-600 font-bold text-lg">
-                            ₹{booking.recycleItemPrice}
-                          </span>
-                        </td>
+
                         <td className="px-6 py-4">
                           <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(booking.status)}`}>
                             {getStatusIcon(booking.status)}
@@ -409,7 +395,7 @@ const UsersRequests: React.FC = () => {
 
         {/* Summary Cards */}
         {bookings.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
             <div className={`rounded-xl p-6 shadow-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
               <div className="flex items-center justify-between">
                 <div>
@@ -455,26 +441,6 @@ const UsersRequests: React.FC = () => {
               </p>
             </div>
 
-            <div className={`rounded-xl p-6 shadow-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className={`text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                    Total Value Processed
-                  </p>
-                  <p className="text-3xl font-bold text-emerald-500 mt-2">
-                    ₹{stats.totalValue}
-                  </p>
-                </div>
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center ${
-                  isDarkMode ? 'bg-emerald-900' : 'bg-emerald-100'
-                }`}>
-                  <FiDollarSign className="text-2xl text-emerald-500" />
-                </div>
-              </div>
-              <p className={`text-sm mt-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                From all completed recycling
-              </p>
-            </div>
           </div>
         )}
       </div>
@@ -503,10 +469,6 @@ const UsersRequests: React.FC = () => {
                 <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <p className="text-sm text-gray-500 dark:text-gray-400">Item</p>
                   <p className="font-semibold text-gray-800 dark:text-white">{selectedBooking.recycleItem}</p>
-                </div>
-                <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Price</p>
-                  <p className="font-semibold text-emerald-600">₹{selectedBooking.recycleItemPrice}</p>
                 </div>
                 <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <p className="text-sm text-gray-500 dark:text-gray-400">Customer Name</p>

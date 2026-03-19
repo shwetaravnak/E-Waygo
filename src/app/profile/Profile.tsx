@@ -65,7 +65,6 @@ const Profile = () => {
     const completedBookings = bookings.filter(b => b?.status === 'completed').length;
     const pendingBookings = bookings.filter(b => b?.status === 'pending').length;
     const acceptedBookings = bookings.filter(b => b?.status === 'accepted').length;
-    const totalValue = bookings.reduce((sum, b) => sum + (Number(b?.recycleItemPrice) || 0), 0);
     const lastBookingDate = bookings
       .map((b) => new Date(b?.createdAt || b?.pickupDate))
       .filter((d) => !isNaN(d.getTime()))
@@ -75,7 +74,6 @@ const Profile = () => {
       completedBookings,
       pendingBookings,
       acceptedBookings,
-      totalValue,
       lastBookingDate: lastBookingDate ? lastBookingDate.toLocaleDateString() : '-'
     };
   }, [bookings]);
@@ -178,7 +176,7 @@ const Profile = () => {
         <h3 className={`text-3xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
           {role === 'ewaste_center' ? '📊 Facility Dashboard' : '♻️ Recycle Activity'}
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           <div className={`rounded-2xl p-8 shadow-xl ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
             <div className="flex items-center justify-between mb-4">
               <FaRecycle className="text-4xl text-emerald-500" />
@@ -199,13 +197,6 @@ const Profile = () => {
             </div>
             <p className={`text-5xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{stats.completedBookings}</p>
             <p className={`text-lg ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Completed</p>
-          </div>
-          <div className={`rounded-2xl p-8 shadow-xl ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-            <div className="flex items-center justify-between mb-4">
-              <FaMoneyBillWave className="text-4xl text-blue-500" />
-            </div>
-            <p className={`text-5xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>₹{stats.totalValue}</p>
-            <p className={`text-lg ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Total Value</p>
           </div>
         </div>
       </div>
@@ -231,7 +222,6 @@ const Profile = () => {
                   <th className={`px-8 py-6 text-lg font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Facility</th>
                   <th className={`px-8 py-6 text-lg font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Pickup Date</th>
                   <th className={`px-8 py-6 text-lg font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Time</th>
-                  <th className={`px-8 py-6 text-lg font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Price</th>
                   <th className={`px-8 py-6 text-lg font-bold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Status</th>
                 </tr>
               </thead>
@@ -264,7 +254,6 @@ const Profile = () => {
                         <td className={`px-8 py-6 text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{b?.facility}</td>
                         <td className={`px-8 py-6 text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{b?.pickupDate}</td>
                         <td className={`px-8 py-6 text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{b?.pickupTime}</td>
-                        <td className={`px-8 py-6 text-lg font-bold text-emerald-500`}>₹{b?.recycleItemPrice}</td>
                         <td className="px-8 py-6">
                           <span className={`px-4 py-2 rounded-full text-base font-medium ${getStatusBadge(b?.status)}`}>
                             {b?.status}

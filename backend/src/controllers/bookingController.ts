@@ -55,7 +55,6 @@ export const createBooking = async (req: Request, res: Response) => {
       userEmail,
       fullName,
       recycleItem,
-      recycleItemPrice,
       pickupDate,
       pickupTime,
       address,
@@ -65,7 +64,6 @@ export const createBooking = async (req: Request, res: Response) => {
       userEmail: string;
       fullName: string;
       recycleItem: string;
-      recycleItemPrice: number;
       pickupDate: string;
       pickupTime: string;
       address: string;
@@ -86,7 +84,6 @@ Your booking for ${recycleItem} has been received!
 Booking Details:
 - Booking ID: #${bookingId.slice(-6)}
 - Item: ${recycleItem}
-- Price: ₹${recycleItemPrice}
 - Date: ${pickupDate}
 - Time: ${pickupTime}
 - Facility: ${facility}
@@ -118,7 +115,6 @@ Booking ID: #${bookingId.slice(-6)}
 - Name: ${fullName}
 - Email: ${userEmail}
 - Item: ${recycleItem}
-- Price: ₹${recycleItemPrice}
 - Date: ${pickupDate}
 - Time: ${pickupTime}
 - Address: ${address}

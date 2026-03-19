@@ -26,7 +26,6 @@ interface Booking {
   userId?: string;
   phone: string;
   recycleItem: string;
-  recycleItemPrice: number;
   pickupDate: string;
   pickupTime: string;
   address: string;
@@ -324,10 +323,6 @@ const MyBookings: React.FC = () => {
                 <div className="p-4 bg-gray-50 rounded">
                   <p className="text-sm text-gray-500">Item</p>
                   <p className="font-semibold">{selectedBooking.recycleItem}</p>
-                </div>
-                <div className="p-4 bg-gray-50 rounded">
-                  <p className="text-sm text-gray-500">Price</p>
-                  <p className="font-semibold text-green-600">₹{selectedBooking.recycleItemPrice}</p>
                 </div>
                 <div className="p-4 bg-gray-50 rounded">
                   <p className="text-sm text-gray-500">Facility</p>

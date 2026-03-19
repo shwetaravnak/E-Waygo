@@ -66,7 +66,6 @@ const EwasteCenter = () => {
                 <p><strong>Name:</strong> {booking.fullName}</p>
                 <p><strong>Email:</strong> {booking.userEmail}</p>
                 <p><strong>Item:</strong> {booking.recycleItem}</p>
-                <p><strong>Price:</strong> ₹{booking.recycleItemPrice}</p>
                 <p><strong>Date:</strong> {booking.pickupDate}</p>
                 <p><strong>Time:</strong> {booking.pickupTime}</p>
                 <p><strong>Address:</strong> {booking.address}</p>

@@ -11,7 +11,6 @@ export interface IBooking extends Document {
   fullName: string;
   userEmail: string;
   recycleItem: string;
-  recycleItemPrice: number;
   pickupDate: string;
   pickupTime: string;
   address: string;
@@ -44,7 +43,6 @@ const bookingSchema = new Schema<IBooking>(
     fullName: { type: String, required: true },
     userEmail: { type: String, required: true },
     recycleItem: { type: String, required: true },
-    recycleItemPrice: { type: Number, required: true },
     pickupDate: { type: String, required: true },
     pickupTime: { type: String, required: true },
     address: { type: String, required: true },
