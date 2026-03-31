@@ -1,10 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { IonIcon } from "@ionic/react";
 import { menuOutline, closeOutline, location, sunny, moon } from "ionicons/icons";
-import logo from "../../assets/E-Waygo .png";
 import { getUser, handleLogout } from "../sign-in/auth";
 import { useDarkMode } from "../utils/DarkModeContext";
 
@@ -92,19 +90,17 @@ const Header = () => {
     <header className={`header ${isHeaderActive ? "active" : ""} ${isDarkMode ? "dark" : ""}`} data-header>
       <div className={`container shadow-md ${isDarkMode ? "dark:bg-gray-800" : ""}`}>
         <Link href="/">
-          <Image
-            src={logo}
-            alt="EWaygo"
-            width={100}
-            height={100}
-            className="logo ml-4 logo md:ml-16"
-          />
+          <span className="logo font-semibold text-4xl md:text-5xl ml-4 md:ml-16 flex items-center h-[100px] drop-shadow-sm">
+            <span className="text-blue-500 dark:text-blue-400">E-</span>
+            <span className="text-green-500 dark:text-green-400">Waygo</span>
+          </span>
         </Link>
 
         <nav className={`navbar z-50 ${isNavbarActive ? "active" : ""}`} data-navbar>
           <div className="wrapper">
-            <Link href="/" className="logo">
-              E-Waygo
+            <Link href="/" className="logo font-semibold text-3xl drop-shadow-sm">
+              <span className="text-blue-500 dark:text-blue-400">E-</span>
+              <span className="text-green-500 dark:text-green-400">Waygo</span>
             </Link>
             <button
               className="nav-close-btn"

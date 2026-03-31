@@ -94,12 +94,12 @@ main,
 .section,
 .container,
 [id]:not(#header):not(.header) {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 130px;
 }
 
 body {
   /* Add padding to push content below the fixed header */
-  padding-top: 80px;
+  padding-top: 120px;
 }
 
 /* Page-specific content adjustments */
@@ -417,7 +417,6 @@ body {
 
 .logo {
   color: var(--rich-black-fogra-29-1);
-  font-family: var(--ff-cuprum);
   font-size: 15px;
   font-weight: var(--fw-500);
   line-height: 1;

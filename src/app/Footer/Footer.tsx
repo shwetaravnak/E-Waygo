@@ -9,9 +9,7 @@ import { logoLinkedin } from "ionicons/icons";
 import { logoTwitter } from "ionicons/icons";
 import { logoInstagram } from "ionicons/icons";
 import { logoWhatsapp } from "ionicons/icons";
-import logo from "../../assets/E-Waygo .png";
 import Link from "next/link";
-import Image from "next/image";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,7 +19,7 @@ const Footer = () => {
   const [formData, setFormData] = useState({
     email: "",
   });
-  
+
   // Get dark mode context
   const { isDarkMode } = useDarkMode();
 
@@ -35,77 +33,33 @@ const Footer = () => {
     ;
   };
 
-  // const SendMsg = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const templateParams = {
-  //     email: formData.email,
-  //   };
-
-  //   emailjs
-  //     .send(
-  //       "service_jqn5flv",
-  //       "template_ppph1w9",
-  //       templateParams,
-  //       "ddYcz13MvW01UFF5u"
-  //     )
-  //     .then((result: { text: any }) => {
-  //       setFormData({
-  //         email: "",
-  //       });
-  //       toast.success("Subscription Confirmed! Welcome to the EWaygo community.");
-  //     })
-  //     .catch((error: { text: any }) => {
-  //       toast.error("Unable to process your request. Please try again.");
-  //     });
-  // };
   return (
     <footer className="footer projects shadow-2xl">
       <div className="footer-top md:section">
-      <ToastContainer
-        className="text-2xl"
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+        <ToastContainer
+          className="text-2xl"
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <div className="container">
           <div className="footer-brand">
             <Link href="/">
-              <Image
-                src={logo}
-                alt="E-Waygo - E-waste Facility Locator"
-                width={100}
-                height={100}
-                className="logo mx-auto md:mx-0"
-              />
+              <span className="logo font-semibold text-4xl md:text-5xl mx-auto md:mx-0 flex items-center h-[100px] mb-4 drop-shadow-sm">
+                <span className="text-blue-500 dark:text-blue-400">E-</span>
+                <span className="text-green-500 dark:text-green-400">Waygo</span>
+              </span>
             </Link>
             <p className="footer-text">
               E-Waygo revolutionizes e-waste management through smart technology. Discover nearby recycling facilities effortlessly and take a step toward responsible disposal and environmental care—one device at a time.
             </p>
-            {/* <form onSubmit={SendMsg} className="newsletter-form mb-0 md:mb-4">
-              <input
-                type="email"
-                name="email"
-                placeholder="Join our sustainability newsletter"
-                className="email-field"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-              />
-              <button
-                type="submit"
-                className="form-btn"
-                aria-label="Subscribe to our newsletter"
-              >
-                <IonIcon icon={paperPlane} aria-hidden="true"></IonIcon>
-              </button>
-            </form> */}
           </div>
           <ul className="footer-list">
             <li>
@@ -123,7 +77,7 @@ const Footer = () => {
             </li>
             <li>
               <Link href="/recycle/accessories" className="footer-link">
-              Electronics Accessories
+                Electronics Accessories
               </Link>
             </li>
 
@@ -135,17 +89,17 @@ const Footer = () => {
 
             <li>
               <Link href="/recycle/refrigerator" className="footer-link">
-              Refrigerator & Cooling Appliances
+                Refrigerator & Cooling Appliances
               </Link>
             </li>
 
             <li>
-            <Link href="/recycle/other" className="footer-link">
+              <Link href="/recycle/other" className="footer-link">
                 Other Household Appliances
               </Link>
             </li>
 
-          
+
           </ul>
           <ul className="footer-list">
             <li>
@@ -163,22 +117,11 @@ const Footer = () => {
               </Link>
             </li>
 
-            {/* <li>
-              <Link href="/news" className="footer-link">
-                Sustainability News
-              </Link>
-            </li> */}
-
             <li>
               <Link href="/contactus" className="footer-link">
                 Get In Touch
               </Link>
             </li>
-            {/* <li>
-              <Link href="/blogs" className="footer-link">
-                Insights & Resources
-              </Link>
-            </li> */}
           </ul>
           <ul className="footer-list">
             <li>
@@ -187,7 +130,7 @@ const Footer = () => {
             <li className="footer-item">
               <IonIcon icon={location} aria-hidden="true" className="w-8 h-8 mt-4"></IonIcon>
               <address className="contact-link address">
-                ABC,<br />Maharashtra, India 
+                ABC,<br />Maharashtra, India
               </address>
             </li>
             <li className="footer-item">
@@ -265,7 +208,7 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <div className="container">
-        <p className="copyright">
+          <p className="copyright">
             &copy; 2025 E-Waygo | All Rights Reserved by{" "}
             <Link href="#" className="copyright-link">
               Team ABC
